@@ -1,8 +1,7 @@
+
 package com.flightmanagement.model;
 
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,6 +39,5 @@ public class Passenger {
         joinColumns = @JoinColumn(name = "passenger_id"),
         inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
-    @JsonIgnore
     private List<Aircraft> aircrafts;
 }

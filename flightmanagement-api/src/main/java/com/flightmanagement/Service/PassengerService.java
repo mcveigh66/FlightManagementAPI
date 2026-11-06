@@ -1,7 +1,8 @@
+
 package com.flightmanagement.Service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.flightmanagement.Repository.PassengerRepository;
@@ -16,8 +17,8 @@ public class PassengerService {
         this.passengerRepository = passengerRepository;
     }
 
-    public List<Passenger> getAllPassengers() {
-        return passengerRepository.findAll();
+    public Page<Passenger> getAllPassengers(Pageable pageable) {
+        return passengerRepository.findAll(pageable);
     }
 
     public Passenger getPassengerById(Long id) {

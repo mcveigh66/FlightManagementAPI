@@ -1,6 +1,7 @@
+
 package com.flightmanagement.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,6 @@ public class Airport {
 
     @ManyToOne
     @JoinColumn(name = "city_id")
-    @JsonIgnore // Prevents infinite JSON loops when fetching cities and airports together
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private City city;
 }

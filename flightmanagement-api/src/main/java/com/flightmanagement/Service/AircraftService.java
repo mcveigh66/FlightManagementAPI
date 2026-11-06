@@ -1,7 +1,8 @@
+
 package com.flightmanagement.Service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.flightmanagement.Repository.AircraftRepository;
@@ -16,18 +17,22 @@ public class AircraftService {
         this.aircraftRepository = aircraftRepository;
     }
 
-    public List<Aircraft> getAllAircraft() {
-        return aircraftRepository.findAll();
+    // Get all aircraft with pagination and sorting
+    public Page<Aircraft> getAllAircraft(Pageable pageable) {
+        return aircraftRepository.findAll(pageable);
     }
 
+    // Get aircraft by ID
     public Aircraft getAircraftById(Long id) {
         return aircraftRepository.findById(id).orElse(null);
     }
 
+    // Create aircraft
     public Aircraft createAircraft(Aircraft aircraft) {
         return aircraftRepository.save(aircraft);
     }
 
+    // Update aircraft
     public Aircraft updateAircraft(Long id, Aircraft aircraft) {
         Aircraft existingAircraft = aircraftRepository.findById(id).orElse(null);
 
@@ -42,7 +47,9 @@ public class AircraftService {
         return null;
     }
 
+    // Delete aircraft
     public void deleteAircraft(Long id) {
         aircraftRepository.deleteById(id);
     }
 }
+
